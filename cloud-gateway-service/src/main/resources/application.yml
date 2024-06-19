@@ -7,24 +7,16 @@ spring:
         locator:
           enable: true
           lower-case-service-id: true
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-    platform: h2
+      routes:
+        - id: card-generating-service
+          uri: lb://card-generating-service
+          predicates:
+            - Path=/cards/**
 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
-
-
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/customers/**
 server:
   port: 8080
 

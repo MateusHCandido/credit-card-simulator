@@ -17,12 +17,4 @@ public class CloudGatewayServiceApplication {
 		SpringApplication.run(CloudGatewayServiceApplication.class, args);
 	}
 
-	@Bean
-	public RouteLocator routes(RouteLocatorBuilder builder){
-		return builder
-				.routes()
-					.route(r -> r.path("/customers/**").uri("lb://customer-service"))
-				.build();
-	}
-
 }
