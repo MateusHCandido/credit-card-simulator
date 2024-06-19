@@ -95,4 +95,6 @@ class CustomerUseCaseTest {
         verify(repository, times(1)).getCustomerByCpf(cpf);
 
     }
+
+
 }
