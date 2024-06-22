@@ -6,7 +6,9 @@ import com.github.MateusHCandido.customer_service.infra.persistence.CustomerEnti
 import com.github.MateusHCandido.customer_service.infra.persistence.CustomerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import javax.persistence.EntityNotFoundException;
@@ -65,6 +67,6 @@ public class CustomerRepositoryJpa implements AppCustomerRepository {
         if(entity.isPresent()){
             CustomerEntity customer = entity.get();
             return modelMapper.map(customer, Customer.class);
-        } throw new EntityNotFoundException("Cliente não encontrado");
+        } throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
     }
 }

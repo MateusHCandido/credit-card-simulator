@@ -9,6 +9,7 @@ import com.github.MateusHCandido.customer_service.infra.gateway.CustomerReposito
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,25 +36,24 @@ public class CustomerController {
     }
 
     @GetMapping("/list-all")
-    @ResponseStatus(HttpStatus.OK)
-    public List<CustomerDto> listAllCustomers(){
-        return customerUseCase.listAllCustomer()
-                .stream()
-                .map(customer -> modelMapper.map(customer, CustomerDto.class))
-                .collect(Collectors.toList());
+    public ResponseEntity<List<CustomerDto>> listAllCustomers(){
+        return ResponseEntity.ok(
+                customerUseCase.listAllCustomer()
+                        .stream()
+                        .map(customer -> modelMapper.map(customer, CustomerDto.class))
+                        .collect(Collectors.toList())
+        );
     }
 
-    @GetMapping("/find")
-    @ResponseStatus(HttpStatus.OK)
-    public CustomerDto findCustomerByCpf(@RequestBody CustomerGetDto dto){
+    @PostMapping("/find")
+    public ResponseEntity<CustomerDto> findCustomerByCpf(@RequestBody CustomerGetDto dto){
         Customer customer = customerUseCase.findCustomerByCpf(dto.getCustomerCpf());
-        return modelMapper.map(customer, CustomerDto.class);
+        return ResponseEntity.ok(modelMapper.map(customer, CustomerDto.class));
     }
 
     @PutMapping("/update")
-    @ResponseStatus(HttpStatus.OK)
-    public CustomerDto updateCustomer(@RequestBody CustomerPutDto dto){
+    public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerPutDto dto){
         Customer updated = customerUseCase.updateCustomer(dto.getCustomerCpf(), dto.getCustomerEmail(), dto.getCustomerName());
-        return modelMapper.map(updated, CustomerDto.class);
+        return ResponseEntity.ok(modelMapper.map(updated, CustomerDto.class));
     }
 }
