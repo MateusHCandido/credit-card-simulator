@@ -6,6 +6,10 @@
       <list>
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/customer-service/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud-gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/card-generating-service/pom.xml" />
+        <option value="$PROJECT_DIR$/validation-credit-service/pom.xml" />
+        <option value="$PROJECT_DIR$/credit-assessment-service/pom.xml" />
       </list>
     </option>
   </component>
