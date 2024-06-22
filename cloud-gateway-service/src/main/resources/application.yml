@@ -17,6 +17,11 @@ spring:
           uri: lb://customer-service
           predicates:
             - Path=/customers/**
+
+        - id: validation-credit-service
+          uri: lb://validation-credit-service
+          predicates:
+            - Path=/credit-assessments/**
 server:
   port: 8080
 
