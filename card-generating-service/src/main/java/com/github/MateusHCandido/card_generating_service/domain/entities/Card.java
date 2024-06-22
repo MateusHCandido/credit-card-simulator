@@ -1,8 +1,10 @@
 package com.github.MateusHCandido.card_generating_service.domain.entities;
 
-import com.github.MateusHCandido.card_generating_service.domain.CardBrand;
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardBrand;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardStatus;
+import com.github.MateusHCandido.card_generating_service.infra.persistence.CustomerCardEntity;
 
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 
 public class Card {
@@ -11,6 +13,8 @@ public class Card {
     private BigDecimal cardReqIncome;
     private BigDecimal cardBasicLimit;
     private CardStatus cardStatus;
+
+
 
     public Card(){}
     public Card(String cardName, CardBrand cardBrand, BigDecimal cardReqIncome, BigDecimal cardBasicLimit, CardStatus cardStatus) {

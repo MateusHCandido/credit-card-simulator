@@ -1,10 +1,11 @@
 package com.github.MateusHCandido.card_generating_service.config;
 
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
 import com.github.MateusHCandido.card_generating_service.domain.entities.Card;
+import com.github.MateusHCandido.card_generating_service.domain.object.CustomerCard;
+import com.github.MateusHCandido.card_generating_service.infra.controller.dto.CustomerCardDto;
 import com.github.MateusHCandido.card_generating_service.infra.controller.dto.GetCardDto;
-import com.github.MateusHCandido.card_generating_service.infra.controller.dto.PostCardDto;
 import com.github.MateusHCandido.card_generating_service.infra.persistence.CardEntity;
+import com.github.MateusHCandido.card_generating_service.infra.persistence.CustomerCardEntity;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -68,6 +69,32 @@ public class CardEntityMapper {
                 );
             }
         });
+
+        modelMapper.addConverter(new AbstractConverter<CustomerCard, CustomerCardDto>() {
+
+            @Override
+            protected CustomerCardDto convert(CustomerCard source) {
+                return new CustomerCardDto(source);
+            }
+        });
+
+        modelMapper.addConverter(new AbstractConverter<CustomerCardEntity, CustomerCard>() {
+
+            @Override
+            protected CustomerCard convert(CustomerCardEntity source) {
+
+                Card card = new Card(
+                        source.getCard().getCardName(),
+                        source.getCard().getCardBrand(),
+                        source.getCard().getCardReqIncome(),
+                        source.getCard().getCardBasicLimit(),
+                        source.getCard().getCardStatus()
+                        );
+
+                return new CustomerCard(source.getCustomerCpf(), card, source.getCustomerCardLimit());
+            }
+        });
+
 
         return modelMapper;
     }

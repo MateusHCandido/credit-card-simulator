@@ -1,7 +1,7 @@
 package com.github.MateusHCandido.card_generating_service.infra.gateway;
 
 import com.github.MateusHCandido.card_generating_service.application.gateway.AppCardRepository;
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardStatus;
 import com.github.MateusHCandido.card_generating_service.domain.entities.Card;
 import com.github.MateusHCandido.card_generating_service.infra.persistence.CardEntity;
 import com.github.MateusHCandido.card_generating_service.infra.persistence.CardRepository;

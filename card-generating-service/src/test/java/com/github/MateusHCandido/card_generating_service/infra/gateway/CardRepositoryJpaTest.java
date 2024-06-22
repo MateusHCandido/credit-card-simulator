@@ -3,8 +3,8 @@ package com.github.MateusHCandido.card_generating_service.infra.gateway;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.github.MateusHCandido.card_generating_service.domain.CardBrand;
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardBrand;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardStatus;
 import com.github.MateusHCandido.card_generating_service.domain.entities.Card;
 import com.github.MateusHCandido.card_generating_service.infra.persistence.CardEntity;
 import com.github.MateusHCandido.card_generating_service.infra.persistence.CardRepository;

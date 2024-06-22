@@ -1,7 +1,7 @@
 package com.github.MateusHCandido.card_generating_service.infra.persistence;
 
-import com.github.MateusHCandido.card_generating_service.domain.CardBrand;
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardBrand;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardStatus;
 import com.github.MateusHCandido.card_generating_service.domain.entities.Card;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,4 +43,6 @@ public class CardEntity {
         this.cardBasicLimit = cardBasicLimit;
         this.cardStatus = cardStatus;
     }
+
+
 }

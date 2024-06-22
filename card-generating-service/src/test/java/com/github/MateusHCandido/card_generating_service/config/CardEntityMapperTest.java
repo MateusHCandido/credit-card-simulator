@@ -1,10 +1,9 @@
 package com.github.MateusHCandido.card_generating_service.config;
 
-import com.github.MateusHCandido.card_generating_service.domain.CardBrand;
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardBrand;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardStatus;
 import com.github.MateusHCandido.card_generating_service.domain.entities.Card;
 import com.github.MateusHCandido.card_generating_service.infra.controller.dto.GetCardDto;
-import com.github.MateusHCandido.card_generating_service.infra.controller.dto.PostCardDto;
 import com.github.MateusHCandido.card_generating_service.infra.persistence.CardEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

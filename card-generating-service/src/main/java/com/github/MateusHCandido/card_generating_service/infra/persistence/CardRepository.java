@@ -1,7 +1,7 @@
 package com.github.MateusHCandido.card_generating_service.infra.persistence;
 
 
-import com.github.MateusHCandido.card_generating_service.domain.CardStatus;
+import com.github.MateusHCandido.card_generating_service.domain.enums.CardStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;
