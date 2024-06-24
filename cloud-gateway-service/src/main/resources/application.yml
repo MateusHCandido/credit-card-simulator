@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: cloud-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+          lower-case-service-id: true
+      routes:
+        - id: card-generating-service
+          uri: lb://card-generating-service
+          predicates:
+            - Path=/cards/**
+
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/customers/**
+
+        - id: validation-credit-service
+          uri: lb://validation-credit-service
+          predicates:
+            - Path=/credit-assessments/**
+server:
+  port: 8080
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
