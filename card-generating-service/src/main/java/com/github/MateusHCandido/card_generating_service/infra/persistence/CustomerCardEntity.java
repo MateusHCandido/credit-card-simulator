@@ -1,6 +1,5 @@
 package com.github.MateusHCandido.card_generating_service.infra.persistence;
 
-import com.github.MateusHCandido.card_generating_service.domain.entities.Card;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

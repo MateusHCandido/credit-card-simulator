@@ -1,6 +1,11 @@
 spring:
   application.:
     name: card-generating-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: jdbc:h2:mem:testdb
     username: mtzz_db
@@ -27,3 +32,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     instance-url:  ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+mq:
+  queues:
+    credit-assessment: credit-assessment

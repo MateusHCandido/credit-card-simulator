@@ -18,8 +18,8 @@ spring:
           predicates:
             - Path=/customers/**
 
-        - id: validation-credit-service
-          uri: lb://validation-credit-service
+        - id: credit-assessment-service
+          uri: lb://credit-assessment-service
           predicates:
             - Path=/credit-assessments/**
 server:

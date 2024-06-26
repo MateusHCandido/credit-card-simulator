@@ -1,7 +1,7 @@
 package com.github.MateusHCandido.validation_credit_service.infra.clients.card;
 
-import com.github.MateusHCandido.validation_credit_service.application.model.enums.CardBrand;
-import com.github.MateusHCandido.validation_credit_service.application.model.enums.CardStatus;
+import com.github.MateusHCandido.validation_credit_service.application.enums.CardBrand;
+import com.github.MateusHCandido.validation_credit_service.application.enums.CardStatus;
 
 import java.math.BigDecimal;
 

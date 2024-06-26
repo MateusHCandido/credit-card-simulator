@@ -14,8 +14,9 @@ import java.util.List;
 @FeignClient(value = "card-generating-service", path = "/cards")
 public interface CardResourceClient {
 
+
     @PostMapping("/find-cards-by-customer")
-    ResponseEntity<List<CustomerCard>> listCardByCustomer(@RequestBody CustomerGetDto dto);
+    public ResponseEntity<List<CustomerCardDto>> listCardByCustomer(@RequestBody CustomerGetDto dto);
 
     @GetMapping("/list-cards-with-required-income-less-or-equal/{reqIncome}")
     public ResponseEntity<List<GetCardDto>> findByCardReqIncomeLessThanEqual(@PathVariable Long reqIncome);

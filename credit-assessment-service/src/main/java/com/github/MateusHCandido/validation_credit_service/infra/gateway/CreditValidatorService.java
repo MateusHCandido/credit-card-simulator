@@ -1,14 +1,15 @@
 package com.github.MateusHCandido.validation_credit_service.infra.gateway;
 
-import com.github.MateusHCandido.validation_credit_service.application.model.ApprovedCard;
-import com.github.MateusHCandido.validation_credit_service.application.model.ReturnCreditAssessment;
+import com.github.MateusHCandido.validation_credit_service.application.model.*;
+import com.github.MateusHCandido.validation_credit_service.infra.clients.card.CustomerCardDto;
 import com.github.MateusHCandido.validation_credit_service.infra.clients.card.GetCardDto;
 import com.github.MateusHCandido.validation_credit_service.infra.clients.customer.CustomerCard;
-import com.github.MateusHCandido.validation_credit_service.application.model.CustomerSituation;
 import com.github.MateusHCandido.validation_credit_service.infra.clients.card.CardResourceClient;
 import com.github.MateusHCandido.validation_credit_service.infra.controller.dto.CustomerDto;
 import com.github.MateusHCandido.validation_credit_service.infra.controller.dto.CustomerGetDto;
 import com.github.MateusHCandido.validation_credit_service.infra.clients.customer.CustomerResourceClient;
+import com.github.MateusHCandido.validation_credit_service.infra.gateway.exception.CardRequestException;
+import com.github.MateusHCandido.validation_credit_service.infra.mqueue.RequestCardIssuancePublisher;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,13 +32,19 @@ public class CreditValidatorService {
     @Autowired
     private CardResourceClient cardResourceClient;
 
+    @Autowired
+    private RequestCardIssuancePublisher publisher;
+
     public CustomerSituation checkCustomerSituation(String customerCpf) {
         try{
             ResponseEntity<CustomerDto> customerDto = customerResourceClient.findCustomerByCpf( new CustomerGetDto(customerCpf) );
-            ResponseEntity<List<CustomerCard>> customerCard = cardResourceClient.listCardByCustomer( new CustomerGetDto(customerCpf) );
+            ResponseEntity<List<CustomerCardDto>> customerCard = cardResourceClient.listCardByCustomer( new CustomerGetDto(customerCpf) );
 
-            CustomerSituation situation = new CustomerSituation(customerDto.getBody(), customerCard.getBody());
-            return situation;
+            return CustomerSituation
+                    .builder()
+                    .customer(customerDto.getBody())
+                    .cards(customerCard.getBody())
+                    .build();
         }catch (FeignException.FeignClientException feignClientException){
             if (feignClientException.status() == HttpStatus.NOT_FOUND.value()){
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
@@ -78,5 +86,13 @@ public class CreditValidatorService {
         return approvedCards;
     }
 
+    public RequestCardIssuanceProtocol requestCardIssuance(RequestDataCardIssuance requestDataCardIssuance){
+        try{
+            publisher.requestCard(requestDataCardIssuance);
+            return new RequestCardIssuanceProtocol(UUID.randomUUID().toString());
 
+        }catch (Exception e){
+            throw new CardRequestException(e.getMessage());
+        }
+    }
 }
