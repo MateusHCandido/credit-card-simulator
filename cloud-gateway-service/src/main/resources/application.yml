@@ -5,7 +5,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8081/realms/credit-card-simulator
+          issuer-uri: http://card-simulate-keycloak:8080/realms/credit-card-simulator
   cloud:
     gateway:
       discovery:
@@ -35,4 +35,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka
