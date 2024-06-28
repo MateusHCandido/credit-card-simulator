@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: cloud-gateway-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://card-simulate-keycloak:8080/realms/credit-card-simulator
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+          lower-case-service-id: true
+      routes:
+        - id: card-generating-service
+          uri: lb://card-generating-service
+          predicates:
+            - Path=/cards/**
+
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/customers/**
+
+        - id: credit-assessment-service
+          uri: lb://credit-assessment-service
+          predicates:
+            - Path=/credit-assessments/**
+server:
+  port: 8080
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka

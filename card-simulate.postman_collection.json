@@ -1,0 +1,670 @@
+{
+	"info": {
+		"_postman_id": "bde0cf0e-4658-4daa-9ab3-1f3054d17079",
+		"name": "card-simulate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26718913"
+	},
+	"item": [
+		{
+			"name": "customer-request",
+			"item": [
+				{
+					"name": "create customer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientSecret",
+									"value": "YEFZbUcBD4pnFHbxiBlBUByM4921rC2x",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"Mateus Test\",\r\n    \"customerCpf\": \"123.456.789-12\", \r\n    \"customerEmail\": \"mateusteste@gmail.com\", \r\n    \"customerBirthdate\": \"12/11/1990\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"Mateus Henrique Candido dos Santos\",\r\n    \"customerCpf\": \"123.456.789-11\", \r\n    \"customerEmail\": \"mateuscandido5@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get customer by cpf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerCpf\": \"123.456.789-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/find",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"find"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list all customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/list-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"list-all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "card-requests",
+			"item": [
+				{
+					"name": "create card",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "9iqCDTRDBYXoPMfBJlmFfe22r79BIow1",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardName\": \"test 2\",\r\n    \"cardBrand\": \"VISA\",\r\n    \"cardReqIncome\": \"2000.00\",\r\n    \"cardBasicLimit\": \"3000.00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "request card",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "9iqCDTRDBYXoPMfBJlmFfe22r79BIow1",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardName\": \"test 2\",\r\n    \"customerCpf\": \"123.456.789-12\",\r\n    \"customerAddress\": \"Snow street, 777\",\r\n    \"cardLimitApproved\": \"10200.000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/credit-assessments/request-card",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"credit-assessments",
+								"request-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cards-reqIncome-less-or-equal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cards/list-cards-with-required-income-less-or-equal/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"list-cards-with-required-income-less-or-equal",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cards-reqIncome-greater-or-equal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cards/list-cards-with-required-income-greater-or-equal/1000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"list-cards-with-required-income-greater-or-equal",
+								"1000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "blocked cards",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cards/block-card/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"block-card",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active cards",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cards/active-card/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"active-card",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "active canceled",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cards/cancel-card/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"cancel-card",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find cards by customer cpf",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerCpf\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cards/find-cards-by-customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cards",
+								"find-cards-by-customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "credit appraiser",
+			"item": [
+				{
+					"name": "check customer situation",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "9iqCDTRDBYXoPMfBJlmFfe22r79BIow1",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerCpf\": \"123.456.789-12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/credit-assessments/check-customer-situation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"credit-assessments",
+								"check-customer-situation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "evaluate-credit",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "9iqCDTRDBYXoPMfBJlmFfe22r79BIow1",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerCpf\": \"123.456.789-12\",\r\n    \"customerIncome\": 50000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/credit-assessments/evaluate-credit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"credit-assessments",
+								"evaluate-credit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "security",
+			"item": [
+				{
+					"name": "authorization",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "YEFZbUcBD4pnFHbxiBlBUByM4921rC2x",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "queryParams",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "credit-card-simulator",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8081/realms/credit-card-simulator/protocol/openid-connect/token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
